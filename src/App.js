@@ -35,6 +35,7 @@ export class App extends Component {
       this.setState({
       cityInfo : axiosResponse.data[0],
       showImg : true,
+      showAlert : false,
     });
   }
 
