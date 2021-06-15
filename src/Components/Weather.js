@@ -1,23 +1,23 @@
-import React, { Component } from 'react'
-import ListGroup from 'react-bootstrap/ListGroup';
+import React, { Component } from "react";
+import ListGroup from "react-bootstrap/ListGroup";
 
 export class Weather extends Component {
   render() {
     return (
       <div>
-        {this.props.weatherData.map(value => {
-                return (
-                  <ListGroup
-                  style={{ width: "30%" , margin: 'Auto' , textAlign: 'center'}}
-                  >
-                      <ListGroup.Item style={{ backgroundColor: '#77ACF1', color: 'white'}}>{value.weather.description}</ListGroup.Item>
-                  </ListGroup>
-                )
-              })
-            }
+        {this.props.weatherData.data.map((value) => {
+          return (
+            <ListGroup style={{ width: "30%", margin: "Auto", textAlign: "center" }}>
+              <ListGroup.Item style={{ backgroundColor: "#77ACF1", color: "white" }}>
+                <p>DATE: {value.date}</p>
+                <p>DESCRIPTION: {value.description}</p>
+              </ListGroup.Item>
+            </ListGroup>
+          );
+        })}
       </div>
-    )
+    );
   }
 }
 
-export default Weather
+export default Weather;
