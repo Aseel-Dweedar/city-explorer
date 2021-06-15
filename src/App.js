@@ -11,8 +11,10 @@ export class App extends Component {
     super(props);
     this.state = {
       selectedCity: "",
-      cityInfo: {},
+      cityInfo: [],
       weatherData: [],
+      lat: "",
+      lon: "",
       errorMsg: "",
       showImg: false,
       showAlert: false,
@@ -27,20 +29,27 @@ export class App extends Component {
 
   getCityInfo = async (e) => {
     e.preventDefault();
-
     try {
-      const axiosResponse = await axios.get(
-        `https://us1.locationiq.com/v1/search.php?key=pk.d36871f015649f915282f374cff76628&city=${this.state.selectedCity}&format=json`
-      );
-
-      const myApiRes = await axios.get(`${process.env.REACT_APP_URL}/weather`);
-      console.log(myApiRes);
-      this.setState({
-        cityInfo: axiosResponse.data[0],
-        weatherData: myApiRes,
-        showImg: true,
-        showAlert: false,
-      });
+      const axiosResponse = await axios
+        .get(
+          `https://us1.locationiq.com/v1/search.php?key=pk.d36871f015649f915282f374cff76628&city=${this.state.selectedCity}&format=json`
+        )
+        .then((axiosResponse) => {
+          this.setState({
+            cityInfo: axiosResponse.data[0],
+            lat: axiosResponse.data[0].lat,
+            lon: axiosResponse.data[0].lon,
+          });
+          axios
+            .get(`${process.env.REACT_APP_URL}/weather?lat=${this.state.lat}&lon=${this.state.lon}`)
+            .then((weatherResponse) => {
+              this.setState({
+                weatherData: weatherResponse.data,
+                showImg: true,
+                showAlert: false,
+              });
+            });
+        });
     } catch (error) {
       this.setState({
         errorMsg: error.message,
@@ -53,9 +62,7 @@ export class App extends Component {
     return (
       <div>
         {this.state.showAlert && <AlertMsg errorMsg={this.state.errorMsg} />}
-
         <FormData getCityName={this.getCityName} getCityInfo={this.getCityInfo} />
-
         {this.state.showImg && (
           <div>
             <MapAndData cityInfo={this.state.cityInfo} />
@@ -66,5 +73,4 @@ export class App extends Component {
     );
   }
 }
-
 export default App;
