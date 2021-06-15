@@ -30,7 +30,7 @@ export class App extends Component {
   getCityInfo = async (e) => {
     e.preventDefault();
     try {
-      const axiosResponse = await axios
+      await axios
         .get(
           `https://us1.locationiq.com/v1/search.php?key=pk.d36871f015649f915282f374cff76628&city=${this.state.selectedCity}&format=json`
         )
