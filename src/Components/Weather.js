@@ -7,11 +7,12 @@ export class Weather extends Component {
       <div>
         <h1 style={{ textAlign: "center" }}> WEATHER DETAILS</h1>
         <ListGroup style={{ width: "30%", margin: "Auto", textAlign: "center" }}>
-          {this.props.weatherData.map((value) => {
+          {this.props.weatherData.map((value, i) => {
             return (
-              <ListGroup.Item style={{ backgroundColor: "#77ACF1", color: "white", marginBottom: "2px" }}>
-                <p>DATE: {value.date}</p>
-                <p>DESCRIPTION: {value.description}</p>
+              <ListGroup.Item key={i} style={{ backgroundColor: "#77ACF1", color: "white", marginBottom: "2px" }}>
+                <span>DATE: {value.date}</span>
+                <br />
+                <span>DESCRIPTION: {value.description}</span>
               </ListGroup.Item>
             );
           })}

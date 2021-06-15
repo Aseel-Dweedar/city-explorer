@@ -19,8 +19,9 @@ export class MapAndData extends Component {
         <Card.Body>
           <Card.Title>{this.props.cityInfo.display_name}</Card.Title>
           <Card.Text>
-            <p>Latitude: {this.props.cityInfo.lat}</p>
-            <p>Longitude: {this.props.cityInfo.lon}</p>
+            <span>Latitude: {this.props.cityInfo.lat}</span>
+            <br />
+            <span>Longitude: {this.props.cityInfo.lon}</span>
           </Card.Text>
         </Card.Body>
       </Card>
