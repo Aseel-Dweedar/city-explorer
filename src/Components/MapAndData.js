@@ -9,7 +9,14 @@ export class MapAndData extends Component {
         bg="secondary"
         text="white"
         className="text-center p-3"
-        style={{ width: "30%", height: "100%", margin: "Auto", marginBottom: "30px" }}
+        style={{
+          width: "30%",
+          height: "750px",
+          margin: "50px",
+          marginBottom: "30px",
+          display: "inline-block",
+          overflow: "auto",
+        }}
       >
         <Image
           style={{ width: "100%" }}
