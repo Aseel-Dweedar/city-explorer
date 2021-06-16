@@ -3,6 +3,7 @@ import FormData from "./Components/FormData";
 import MapAndData from "./Components/MapAndData";
 import AlertMsg from "./Components/AlertMsg";
 import Weather from "./Components/Weather";
+import Movies from "./Components/Movies";
 import "bootstrap/dist/css/bootstrap.min.css";
 import axios from "axios";
 
@@ -18,6 +19,7 @@ export class App extends Component {
       errorMsg: "",
       showImg: false,
       showAlert: false,
+      moviesData: "",
     };
   }
 
@@ -49,6 +51,12 @@ export class App extends Component {
                 showAlert: false,
               });
             });
+          axios.get(`${process.env.REACT_APP_URL}/movies?city=${this.state.selectedCity}`).then((moviesResponse) => {
+            this.setState({
+              moviesData: moviesResponse.data[0],
+            });
+            console.log(this.state.moviesData);
+          });
         });
     } catch (error) {
       this.setState({
@@ -66,6 +74,7 @@ export class App extends Component {
         {this.state.showImg && (
           <div>
             <MapAndData cityInfo={this.state.cityInfo} />
+            <Movies moviesData={this.state.moviesData} />
             <Weather weatherData={this.state.weatherData} />
           </div>
         )}
