@@ -19,7 +19,7 @@ export class App extends Component {
       errorMsg: "",
       showImg: false,
       showAlert: false,
-      moviesData: "",
+      moviesData: [],
     };
   }
 
@@ -53,9 +53,9 @@ export class App extends Component {
             });
           axios.get(`${process.env.REACT_APP_URL}/movies?city=${this.state.selectedCity}`).then((moviesResponse) => {
             this.setState({
-              moviesData: moviesResponse.data[0],
+              moviesData: moviesResponse.data,
             });
-            console.log(this.state.moviesData);
+            // console.log(moviesResponse.data);
           });
         });
     } catch (error) {
@@ -74,8 +74,8 @@ export class App extends Component {
         {this.state.showImg && (
           <div>
             <MapAndData cityInfo={this.state.cityInfo} />
-            <Movies moviesData={this.state.moviesData} />
             <Weather weatherData={this.state.weatherData} />
+            <Movies moviesData={this.state.moviesData} />
           </div>
         )}
       </div>
