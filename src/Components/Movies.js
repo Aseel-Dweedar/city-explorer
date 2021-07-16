@@ -1,18 +1,23 @@
 import React, { Component } from "react";
 import Card from "react-bootstrap/Card";
 import CardColumns from "react-bootstrap/CardColumns";
-
 export class Movies extends Component {
   render() {
     return (
-      <CardColumns style={{ display: "flex", flexWrap: "wrap" }}>
+      <CardColumns style={{ display: "flex", flexWrap: "wrap", width: "90%", margin: "auto" }}>
         {this.props.moviesData.map((movie) => {
           return (
             <Card
-              bg="secondary"
               text="white"
               className="text-center p-3"
-              style={{ display: "inline-block", width: "400px", height: "500px", margin: "20px", overflow: "auto" }}
+              style={{
+                backgroundColor: "#0A1931",
+                display: "inline-block",
+                width: "360px",
+                height: "500px",
+                margin: "20px",
+                overflow: "auto",
+              }}
             >
               <Card.Title> {movie.title} </Card.Title>
               <Card.Img

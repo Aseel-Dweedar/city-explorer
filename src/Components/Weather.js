@@ -5,11 +5,11 @@ export class Weather extends Component {
   render() {
     return (
       <div>
-        <h1 style={{ textAlign: "center" }}> WEATHER DETAILS</h1>
-        <ListGroup style={{ width: "30%", margin: "Auto", textAlign: "center" }}>
+        <h5 style={{ textAlign: "center" }}> WEATHER DETAILS</h5>
+        <ListGroup style={{ width: "80%", margin: "Auto", textAlign: "center" }}>
           {this.props.weatherData.map((value, i) => {
             return (
-              <ListGroup.Item key={i} style={{ backgroundColor: "#77ACF1", color: "white", marginBottom: "2px" }}>
+              <ListGroup.Item key={i} style={{ backgroundColor: "#1768AC", color: "white", marginBottom: "2px" }}>
                 <span>DATE: {value.date}</span>
                 <br />
                 <span>DESCRIPTION: {value.description}</span>
